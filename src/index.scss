@@ -3,3 +3,46 @@
     margin: 0;
     box-sizing: border-box;
 }
+
+// Variable declarations
+//$primary-color: #0A4D68;
+$primary-color: #2EC1AC;
+$secondary-color: #D2E603;
+$complementary-color: #FFFFDD;
+$dark-color: black;
+$main-font: 'Helvetica Neue', sans-serif;
+$spacing: 1rem;
+
+// Using variables in CSS properties
+body {
+  font-family: $main-font !important;
+  background-color: $complementary-color;
+}
+
+h1 {
+  color: $primary-color;
+  font-size: 2rem;
+}
+
+
+/* Cambia el color de fondo de la barra de desplazamiento */
+::-webkit-scrollbar {
+  width: 12px;
+  background-color: #f5f5f5; /* Cambia el color de fondo */
+}
+
+/* Cambia el color de la barra de desplazamiento misma */
+::-webkit-scrollbar-thumb {
+  background-color: $secondary-color; /* Cambia el color de la barra de desplazamiento */
+  border-radius: 6px; /* Añade bordes redondeados */
+}
+
+/* Cambia el color cuando se pasa el mouse por encima de la barra de desplazamiento */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Cambia el color al pasar el mouse por encima */
+}
+
+/* Cambia el color de fondo cuando se pasa el mouse por encima de la barra de desplazamiento */
+::-webkit-scrollbar-track {
+  background-color: #ddd; /* Cambia el color de fondo al pasar el mouse por encima */
+}
