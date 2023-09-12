@@ -8,9 +8,9 @@ const Layout = () => {
         <>
         <Navbar />
        
-        <div style={{ marginLeft: '200px', marginTop:'64px' }}>
+        {/* <div style={{ marginLeft: '200px', marginTop:'64px' }}> */}
           <Outlet />
-        </div>
+        {/* </div> */}
       </>
   
     )

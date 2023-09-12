@@ -334,7 +334,7 @@ function Dashboard() {
                             <EditIcon />
                         </IconButton>
 
-                        <ModalEdit open={open} setOpen={setOpen} postToEdit={postToEdit}/>
+                        <ModalEdit open={open} setOpen={setOpen} postToEdit={postToEdit} />
                     </Tooltip>
                 )}
 
@@ -445,160 +445,162 @@ function Dashboard() {
         { icon: <BsFillPatchPlusFill />, text: 'Publicar' },
         { icon: <CgProfile />, text: 'Perfil' },
         { icon: <BiPhotoAlbum />, text: 'Mi Galería' },
-      ];
-      
+    ];
+
 
 
     return (
         <>
-        <NavbarLeft listItems={listItems} />
-        <Box sx={{ width: '95%' }}>
-            <Paper sx={{ width: '100%', mb: 2 }}>
-                {userData.length > 0 ? (
-                    <div>
-                        <EnhancedTableToolbar numSelected={selected.length} />
-                        <TableContainer>
-                            <Table
-                                sx={{ minWidth: 750 }}
-                                aria-labelledby="tableTitle"
-                                size={dense ? 'small' : 'medium'}
-                            >
-                                <EnhancedTableHead
-                                    numSelected={selected.length}
-                                    order={order}
-                                    orderBy={orderBy}
-                                    onSelectAllClick={handleSelectAllClick}
-                                    onRequestSort={handleRequestSort}
-                                    rowCount={userData.length}
-                                />
-                                <TableBody>
-                                    {visibleRows.map((row, index) => {
-                                        const isItemSelected = isSelected(row.title);
-                                        const labelId = `enhanced-table-checkbox-${index}`;
-                                        const isRowExpanded = expandedRows[row.title];
+            <NavbarLeft listItems={listItems} />
+            <div style={{ marginLeft: '200px', marginTop: '64px' }}>
+                <Box sx={{ width: '95%' }}>
+                    <Paper sx={{ width: '100%', mb: 2 }}>
+                        {userData.length > 0 ? (
+                            <div>
+                                <EnhancedTableToolbar numSelected={selected.length} />
+                                <TableContainer>
+                                    <Table
+                                        sx={{ minWidth: 750 }}
+                                        aria-labelledby="tableTitle"
+                                        size={dense ? 'small' : 'medium'}
+                                    >
+                                        <EnhancedTableHead
+                                            numSelected={selected.length}
+                                            order={order}
+                                            orderBy={orderBy}
+                                            onSelectAllClick={handleSelectAllClick}
+                                            onRequestSort={handleRequestSort}
+                                            rowCount={userData.length}
+                                        />
+                                        <TableBody>
+                                            {visibleRows.map((row, index) => {
+                                                const isItemSelected = isSelected(row.title);
+                                                const labelId = `enhanced-table-checkbox-${index}`;
+                                                const isRowExpanded = expandedRows[row.title];
 
-                                        return (
-                                            <React.Fragment key={row.title}>
-                                                <TableRow
-                                                    hover
-                                                    onClick={(event) => handleClick(event, row.title)}
-                                                    role="checkbox"
-                                                    aria-checked={isItemSelected}
-                                                    tabIndex={-1}
-                                                    selected={isItemSelected}
-                                                    sx={{ cursor: 'pointer' }}
-                                                >
-                                                    <TableCell padding="checkbox">
-                                                        <Checkbox
-                                                            color="primary"
-                                                            checked={isItemSelected}
-                                                            inputProps={{
-                                                                'aria-labelledby': labelId,
-                                                            }}
-                                                        />
-                                                    </TableCell>
-                                                    <TableCell
-                                                        component="th"
-                                                        id={labelId}
-                                                        scope="row"
-                                                        padding="none"
-                                                    >
-                                                        {row.title}
-                                                    </TableCell>
-                                                    <TableCell align="right">{row.body}</TableCell>
-                                                    <TableCell>
-                                                        <IconButton
-                                                            aria-label="expand row"
-                                                            size="small"
-                                                            onClick={(event) => handleRowExpand(event, row)}
+                                                return (
+                                                    <React.Fragment key={row.title}>
+                                                        <TableRow
+                                                            hover
+                                                            onClick={(event) => handleClick(event, row.title)}
+                                                            role="checkbox"
+                                                            aria-checked={isItemSelected}
+                                                            tabIndex={-1}
+                                                            selected={isItemSelected}
+                                                            sx={{ cursor: 'pointer' }}
                                                         >
-                                                            {isRowExpanded ? (
-                                                                <>
-                                                                    <span className='show__comments'>Ocultar comentarios</span>
-                                                                    <KeyboardArrowUpIcon />
-                                                                </>
-                                                            ) : (
-                                                                <>
-                                                                    <span className='show__comments'>Ver comentarios</span>
-                                                                    <KeyboardArrowDownIcon />
-                                                                </>
-                                                            )}
-                                                        </IconButton>
-                                                    </TableCell>
-                                                </TableRow>
-                                                <TableRow>
-                                                    <TableCell
-                                                        style={{ paddingBottom: 0, paddingTop: 0 }}
-                                                        colSpan={7}
-                                                    >
-                                                        <Collapse in={isRowExpanded} timeout="auto" unmountOnExit>
-                                                            <Box sx={{ width: '100%' }}>
-                                                                <Paper sx={{ width: '100%', mb: 2 }}>
-                                                                    {commentsData.length > 0 ? (
-                                                                        <TableContainer>
-                                                                            <Table aria-label="sticky table" size="medium">
-                                                                                <TableHead>
-                                                                                    <TableRow>
-                                                                                        {columns.map((column) => (
-                                                                                            <TableCell
-                                                                                                key={column.id}
-                                                                                                align="left"
-                                                                                                style={{ minWidth: column.minWidth }}
-                                                                                            >
-                                                                                                {column.label}
-                                                                                            </TableCell>
-                                                                                        ))}
-                                                                                    </TableRow>
-                                                                                </TableHead>
-                                                                                <TableBody>
-                                                                                    {commentsData.map((row) => (
-                                                                                        <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
-                                                                                            <TableCell align="left">{row.email}</TableCell>
-                                                                                            <TableCell align="left">{row.name}</TableCell>
-                                                                                            <TableCell align="left">{row.body}</TableCell>
-                                                                                        </TableRow>
-                                                                                    ))}
-                                                                                </TableBody>
-                                                                            </Table>
-                                                                        </TableContainer>
+                                                            <TableCell padding="checkbox">
+                                                                <Checkbox
+                                                                    color="primary"
+                                                                    checked={isItemSelected}
+                                                                    inputProps={{
+                                                                        'aria-labelledby': labelId,
+                                                                    }}
+                                                                />
+                                                            </TableCell>
+                                                            <TableCell
+                                                                component="th"
+                                                                id={labelId}
+                                                                scope="row"
+                                                                padding="none"
+                                                            >
+                                                                {row.title}
+                                                            </TableCell>
+                                                            <TableCell align="right">{row.body}</TableCell>
+                                                            <TableCell>
+                                                                <IconButton
+                                                                    aria-label="expand row"
+                                                                    size="small"
+                                                                    onClick={(event) => handleRowExpand(event, row)}
+                                                                >
+                                                                    {isRowExpanded ? (
+                                                                        <>
+                                                                            <span className='show__comments'>Ocultar comentarios</span>
+                                                                            <KeyboardArrowUpIcon />
+                                                                        </>
                                                                     ) : (
-                                                                        <div>Cargando...</div>
+                                                                        <>
+                                                                            <span className='show__comments'>Ver comentarios</span>
+                                                                            <KeyboardArrowDownIcon />
+                                                                        </>
                                                                     )}
-                                                                </Paper>
-                                                            </Box>
-                                                        </Collapse>
-                                                    </TableCell>
+                                                                </IconButton>
+                                                            </TableCell>
+                                                        </TableRow>
+                                                        <TableRow>
+                                                            <TableCell
+                                                                style={{ paddingBottom: 0, paddingTop: 0 }}
+                                                                colSpan={7}
+                                                            >
+                                                                <Collapse in={isRowExpanded} timeout="auto" unmountOnExit>
+                                                                    <Box sx={{ width: '100%' }}>
+                                                                        <Paper sx={{ width: '100%', mb: 2 }}>
+                                                                            {commentsData.length > 0 ? (
+                                                                                <TableContainer>
+                                                                                    <Table aria-label="sticky table" size="medium">
+                                                                                        <TableHead>
+                                                                                            <TableRow>
+                                                                                                {columns.map((column) => (
+                                                                                                    <TableCell
+                                                                                                        key={column.id}
+                                                                                                        align="left"
+                                                                                                        style={{ minWidth: column.minWidth }}
+                                                                                                    >
+                                                                                                        {column.label}
+                                                                                                    </TableCell>
+                                                                                                ))}
+                                                                                            </TableRow>
+                                                                                        </TableHead>
+                                                                                        <TableBody>
+                                                                                            {commentsData.map((row) => (
+                                                                                                <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
+                                                                                                    <TableCell align="left">{row.email}</TableCell>
+                                                                                                    <TableCell align="left">{row.name}</TableCell>
+                                                                                                    <TableCell align="left">{row.body}</TableCell>
+                                                                                                </TableRow>
+                                                                                            ))}
+                                                                                        </TableBody>
+                                                                                    </Table>
+                                                                                </TableContainer>
+                                                                            ) : (
+                                                                                <div>Cargando...</div>
+                                                                            )}
+                                                                        </Paper>
+                                                                    </Box>
+                                                                </Collapse>
+                                                            </TableCell>
+                                                        </TableRow>
+                                                    </React.Fragment>
+                                                );
+                                            })}
+                                            {emptyRows > 0 && (
+                                                <TableRow
+                                                    style={{
+                                                        height: (dense ? 33 : 53) * emptyRows,
+                                                    }}
+                                                >
+                                                    <TableCell colSpan={7} />
                                                 </TableRow>
-                                            </React.Fragment>
-                                        );
-                                    })}
-                                    {emptyRows > 0 && (
-                                        <TableRow
-                                            style={{
-                                                height: (dense ? 33 : 53) * emptyRows,
-                                            }}
-                                        >
-                                            <TableCell colSpan={7} />
-                                        </TableRow>
-                                    )}
-                                </TableBody>
-                            </Table>
-                        </TableContainer>
-                        <TablePagination
-                            rowsPerPageOptions={[5, 10, 25]}
-                            component="div"
-                            count={userData.length}
-                            rowsPerPage={rowsPerPage}
-                            page={page}
-                            onPageChange={handleChangePage}
-                            onRowsPerPageChange={handleChangeRowsPerPage}
-                        />
-                    </div>
-                ) : (
-                    <div>Cargando...</div>
-                )}
-            </Paper>
-        </Box>
+                                            )}
+                                        </TableBody>
+                                    </Table>
+                                </TableContainer>
+                                <TablePagination
+                                    rowsPerPageOptions={[5, 10, 25]}
+                                    component="div"
+                                    count={userData.length}
+                                    rowsPerPage={rowsPerPage}
+                                    page={page}
+                                    onPageChange={handleChangePage}
+                                    onRowsPerPageChange={handleChangeRowsPerPage}
+                                />
+                            </div>
+                        ) : (
+                            <div>Cargando...</div>
+                        )}
+                    </Paper>
+                </Box>
+            </div>
         </>
     );
 }

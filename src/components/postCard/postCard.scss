@@ -22,3 +22,24 @@
 
     }
 }
+
+// .css-1ri6ub7-MuiPaper-root-MuiCard-root {
+//     position: relative !important;
+// }
+
+.menu__details {
+  
+        position: absolute !important;
+        top: 0px;
+        right: 0px;
+        background-color: $secondary-color;
+        color: $dark-color;
+        z-index: 9999999;
+        padding: 1rem;
+        border-radius: 1rem;
+        p {
+            font-size: 1rem;
+        }
+
+
+}

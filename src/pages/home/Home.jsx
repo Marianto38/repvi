@@ -51,37 +51,26 @@ const Home = () => {
 
   return (
     <>
+
       <NavbarLeft listItems={listItems} />
+      <div style={{ marginLeft: '200px', marginTop: '64px' }}>
+        <ResponsiveMasonry
+          columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}
+        >
+          <Masonry>
+            {postsData.length > 0 ? (
+              postsData.map((post) => (
+                <PostCard
+                  className='postCard__card'
+                  key={post.id}
+                  post={post}
+                />
 
-      <ResponsiveMasonry
-        columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}
-      >
-        <Masonry>
-          {postsData.length > 0 ? (
-            postsData.map((post) => (
-              <PostCard
-                className='postCard__card'
-                key={post.id}
-                post={post}
-              />
-
-            ))
-          ) : "cargando..."}
-        </Masonry>
-      </ResponsiveMasonry>
-      {/* <div className='postCard__container' style={styles.pin_container}>
-
-      {postsData.length > 0 ? (
-        postsData.map((post) => (
-            <PostCard
-            className='postCard__card'
-              key={post.id}
-              post={post}
-            />
-            
-            ))
+              ))
             ) : "cargando..."}
-            </div> */}
+          </Masonry>
+        </ResponsiveMasonry>
+      </div>
     </>
   );
 };
