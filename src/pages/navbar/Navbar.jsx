@@ -15,7 +15,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
-import './navbar.scss'
+//import './navbar.scss'
 import { AiFillPlusCircle } from 'react-icons/ai';
 import ModalCreatePost from '../../components/modalCreatePost/ModalCreatePost';
 import { useNavigate } from 'react-router-dom';
@@ -96,6 +96,19 @@ const Navbar = () => {
 
     const handleGoToDashboard = () => {
       navigate('dashboard');
+      handleMenuClose();
+
+    }
+
+    const handleGoToHome = () => {
+      navigate('/');
+      handleMenuClose();
+
+    }
+
+    const handleGoToProfile = () => {
+      navigate('perfil');
+      handleMenuClose();
 
     }
   
@@ -116,7 +129,7 @@ const Navbar = () => {
         open={isMenuOpen}
         onClose={handleMenuClose}
       >
-        <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+        <MenuItem onClick={handleGoToProfile}>Perfil</MenuItem>
         <MenuItem onClick={handleGoToDashboard} >Dashboard</MenuItem>
       </Menu>
     );
@@ -183,7 +196,11 @@ const Navbar = () => {
                 edge="start"
                 color="inherit"
                 aria-label="open drawer"
-                sx={{ mr: 2 }}
+                sx={{ mr: 2, backgroundColor: 'red',
+                color: 'white',
+                '&:hover': {
+                  backgroundColor: 'blue',
+                }, }}
               >
                 <MenuIcon />
               </IconButton>
@@ -192,6 +209,8 @@ const Navbar = () => {
                 noWrap
                 component="div"
                 sx={{ display: { xs: 'none', sm: 'block' } }}
+                onClick={handleGoToHome}
+                style={{cursor:'pointer'}}
               >
                 MUI
               </Typography>

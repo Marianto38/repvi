@@ -5,6 +5,7 @@ import Error404 from "../pages/error404/Error404";
 import Home from "../pages/home/Home";
 import Dashboard from "../pages/dashboard/Dashboard";
 import PostCardDetail from "../pages/postCardDetail/PostCardDetail";
+import Profile from "../pages/profile/Profile";
 
 const AppRouter = () => {
   return (
@@ -16,8 +17,8 @@ const AppRouter = () => {
         >
           <Route index element={<Home />} />
           <Route path="dashboard" element={<Dashboard />} />
+          <Route path="perfil" element={<Profile />} />
           <Route path="/detalle-publicacion/:idPostCard" element={<PostCardDetail />} />
-
         </Route>
         <Route path="*" element={<Error404 />} />
       </Routes>
