@@ -15,6 +15,10 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
+import './navbar.scss'
+import { AiFillPlusCircle } from 'react-icons/ai';
+import ModalCreatePost from '../../components/modalCreatePost/ModalCreatePost';
+import { useNavigate } from 'react-router-dom';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -60,7 +64,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const Navbar = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-  
+    const [open, setOpen] = React.useState(false);
+
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
   
@@ -80,6 +85,19 @@ const Navbar = () => {
     const handleMobileMenuOpen = (event) => {
       setMobileMoreAnchorEl(event.currentTarget);
     };
+
+    const handleOpenModalCreatePost = () => {
+      console.log('abrir');
+      setOpen(true);  
+    }
+
+    const navigate = useNavigate();
+    
+
+    const handleGoToDashboard = () => {
+      navigate('dashboard');
+
+    }
   
     const menuId = 'primary-search-account-menu';
     const renderMenu = (
@@ -99,7 +117,7 @@ const Navbar = () => {
         onClose={handleMenuClose}
       >
         <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-        <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+        <MenuItem onClick={handleGoToDashboard} >Dashboard</MenuItem>
       </Menu>
     );
   
@@ -120,7 +138,7 @@ const Navbar = () => {
         open={isMobileMenuOpen}
         onClose={handleMobileMenuClose}
       >
-        <MenuItem>
+        {/* <MenuItem>
           <IconButton size="large" aria-label="show 4 new mails" color="inherit">
             <Badge badgeContent={4} color="error">
               <MailIcon />
@@ -139,7 +157,8 @@ const Navbar = () => {
             </Badge>
           </IconButton>
           <p>Notifications</p>
-        </MenuItem>
+        </MenuItem> */}
+        <button>CREAR</button>
         <MenuItem onClick={handleProfileMenuOpen}>
           <IconButton
             size="large"
@@ -157,7 +176,7 @@ const Navbar = () => {
   
     return (
         <Box sx={{ flexGrow: 1 }}>
-          <AppBar position="static">
+          <AppBar position="fixed">
             <Toolbar>
               <IconButton
                 size="large"
@@ -187,12 +206,14 @@ const Navbar = () => {
               </Search>
               <Box sx={{ flexGrow: 1 }} />
               <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-                  <Badge badgeContent={4} color="error">
-                    <MailIcon />
-                  </Badge>
+                 <IconButton size="large" aria-label="show 4 new mails" color="inherit" onClick={handleOpenModalCreatePost}>
+                  <span className='btn__post'>
+                    PUBLICAR
+                  </span>
+                  <AiFillPlusCircle/>
                 </IconButton>
-                <IconButton
+                <ModalCreatePost open={open} setOpen={setOpen}  />
+                {/* <IconButton
                   size="large"
                   aria-label="show 17 new notifications"
                   color="inherit"
@@ -200,7 +221,9 @@ const Navbar = () => {
                   <Badge badgeContent={17} color="error">
                     <NotificationsIcon />
                   </Badge>
-                </IconButton>
+                </IconButton>  */}
+
+
                 <IconButton
                   size="large"
                   edge="end"

@@ -1,0 +1,45 @@
+@import '../../index.scss';
+
+.comment__name {
+    font-weight: bold;
+}
+
+.comments {
+    &__content {
+        font-size: 14px !important;
+        text-align: justify;
+        font-weight: 400;
+        font-size: 0.875rem;
+        line-height: 1.43;
+        letter-spacing: 0.01071em;
+    }
+    &__card {
+       background-color:#2ec1ac1c;
+        margin-bottom: .5rem;
+        border-radius: 1.5rem;
+        padding: 1rem;
+        backdrop-filter: blur(10px);
+
+    }
+}
+
+// .css-1ri6ub7-MuiPaper-root-MuiCard-root {
+//     position: relative !important;
+// }
+
+.menu__details {
+  
+        position: absolute !important;
+        top: 0px;
+        right: 0px;
+        background-color: $secondary-color;
+        color: $dark-color;
+        z-index: 9999999;
+        padding: 1rem;
+        border-radius: 1rem;
+        p {
+            font-size: 1rem;
+        }
+
+
+}

@@ -3,21 +3,24 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "../pages/layout/Layout";
 import Error404 from "../pages/error404/Error404";
 import Home from "../pages/home/Home";
-
+import Dashboard from "../pages/dashboard/Dashboard";
+import PostCardDetail from "../pages/postCardDetail/PostCardDetail";
 
 const AppRouter = () => {
   return (
     <BrowserRouter>
-      
-        <Routes>
-          <Route element={<Layout />}>
-             <Route path="/" Component={Home} /> 
-         
-          </Route>
-    
-          <Route path="*" Component={Error404} />
-        </Routes>
-      
+      <Routes>
+        <Route
+          path="/"
+          element={<Layout />}
+        >
+          <Route index element={<Home />} />
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="/detalle-publicacion/:idPostCard" element={<PostCardDetail />} />
+
+        </Route>
+        <Route path="*" element={<Error404 />} />
+      </Routes>
     </BrowserRouter>
   );
 };
