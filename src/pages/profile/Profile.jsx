@@ -19,6 +19,8 @@ import Divider from '@mui/material/Divider';
 import { FaLocationDot } from 'react-icons/fa6';
 import { MdOutlineAlternateEmail } from 'react-icons/md';
 import { TbWorldWww } from 'react-icons/tb';
+import PostCard from '../../components/postCard/PostCard';
+import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
 
 const Profile = () => {
 
@@ -26,7 +28,7 @@ const Profile = () => {
         { icon: <FaHome />, text: 'Inicio' },
         { icon: <BsFillPatchPlusFill />, text: 'Publicar' },
         { icon: <CgProfile />, text: 'Perfil' },
-        { icon: <BiPhotoAlbum />, text: 'Mi Galería' },
+        // { icon: <BiPhotoAlbum />, text: 'Mi Galería' },
     ];
 
     const [userData, setUserData] = useState([]);
@@ -62,21 +64,34 @@ const Profile = () => {
                 console.error(err);
             });
     }, []);
-    console.log(userData);
-
+        
+    let posts = JSON.parse(localStorage.getItem("posts"));
     return (
         <>
             <NavbarLeft listItems={listItems} />
             <div style={{ marginLeft: '200px', marginTop: '64px' }}>
                 <div className='profile__container'>
                     <div className='profile__container__left'>
+                        <h3 className='profile__container__left__title'>MIS FAVORITOS</h3>
+                         <Divider variant="inset" component="div" />
+                        
+                        <ResponsiveMasonry
+                            columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}
+                        >
+                            <Masonry>
+                                {posts.map((post, index) => (
+                                    <PostCard key={post.id} post={post.post} />
+                                ))}
 
+                            </Masonry>
+                        </ResponsiveMasonry>
                     </div>
+
 
                     <div className='profile__container__right'>
 
                         <div className='profile__container__right__avatar'>
-                            <p  className='profile__container__right__avatar__p'>
+                            <p className='profile__container__right__avatar__p'>
                                 {initialsName}
 
                             </p>
@@ -112,6 +127,7 @@ const Profile = () => {
                                     </ListItemAvatar>
                                     <ListItemText primary={userData.email} secondary={userData.phone} />
                                 </ListItem>
+                                 <Divider variant="inset" component="li" />
                                 <ListItem>
                                     <ListItemAvatar>
                                         <Avatar sx={{ bgcolor: '#9c27b0' }}>

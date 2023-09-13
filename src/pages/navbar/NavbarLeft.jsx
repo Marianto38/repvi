@@ -10,11 +10,20 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import './navbar.scss'
 import './navbarLeft.scss'
+import { useNavigate } from 'react-router-dom';
 
 
 const drawerWidth = 200;
 
 const NavbarLeft = ({listItems}) => {
+
+    const navigate = useNavigate();
+
+const handleGoTo = (address) => {
+    console.log(address)
+    navigate(`${address}`);
+}
+
     return (
         <Drawer
             sx={{
@@ -31,7 +40,8 @@ const NavbarLeft = ({listItems}) => {
         >
             <List>
                 {listItems.map((item, index) => (
-                    <ListItem key={index}>
+                    <ListItem key={index} onClick={() => handleGoTo(item.root)}>
+
                         <ListItemButton>
                             <ListItemIcon>{item.icon}</ListItemIcon>
                             <Typography variant="inherit">{item.text}</Typography>

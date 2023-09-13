@@ -8,7 +8,13 @@
             display: flex;
             flex-direction: column;
             width: 70%;
-            background-color: aqua;
+            background-color: $complementary-color;
+
+            &__title {
+                text-align: center;
+                margin: 2rem 0 2rem 0;
+                color: $primary-color;
+            }
         }
         &__right {
             display: flex;

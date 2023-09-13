@@ -15,7 +15,7 @@ import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
 
 const Home = () => {
   const listItems = [
-    { icon: <FaMapLocationDot />, text: 'Destinos' },
+    { icon: <FaMapLocationDot />, text: 'Destinos', root:'home' },
     { icon: <FaLightbulb />, text: 'Consejos' },
     { icon: <FaClipboardList />, text: '¿Qué hacer?' },
     { icon: <FaPersonWalkingLuggage />, text: '¿Cómo viajar?' },
@@ -27,7 +27,7 @@ const Home = () => {
 
   const [postsData, setPostsData] = useState([]);
 
-  console.log(postsData);
+  //console.log(postsData);
 
   useEffect(() => {
     getAllPosts()
