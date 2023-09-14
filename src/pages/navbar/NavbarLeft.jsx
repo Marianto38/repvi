@@ -29,11 +29,13 @@ const handleGoTo = (address) => {
                 '& .MuiDrawer-paper': {
                     width: drawerWidth,
                     boxSizing: 'border-box',
-                    marginTop: '64px'
+                    marginTop: '64px',
+                    backgroundColor:'#2EC1AC'
                 },
             }}
             variant="permanent"
             anchor="left"
+            className='navbarLeft__drawer'
         >
             <List>
                 {listItems.map((item, index) => (
