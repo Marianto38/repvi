@@ -18,9 +18,9 @@ REPVI es un proyecto de software web diseñado para proporcionar una experiencia
 - Compartir una publicación a traves de redes sociales (facebook, instagram y whatsapp)
 - Formularios de fácil comprensión
 
-## Demo
+## Despliegue de la aplicación 
 
-Insert gif or link to demo
+[repvi](https://main.d3t69bl5kh30u3.amplifyapp.com/)
 
 
 ## Instalación
@@ -92,6 +92,14 @@ En caso de no tener node instalado puede instalarlo con el comando:
   - En la navbar superior, encontrará el buscador que permite realizar el filtro de las publicaciones que tenga coincidencias, y en al dar click en el icono de usuario puede ver las opciones para dirigirse al perfil o al dashboard
     
   <img width="100%" height="auto" src="https://res.cloudinary.com/dd8l8bm6q/image/upload/v1694702404/eitnddea5vrrfcaxsjr6.jpg" height="175px"/>
+
+  - En cada una de las cards de la publicación en el boton superior al hacer hover podrá visualizar la opción para ir al detalle ampliado de la publicación
+    
+  <img width="100%" height="auto" src="https://res.cloudinary.com/dd8l8bm6q/image/upload/v1694715923/zc9m51jpycwdyfjpcr3o.jpg" height="175px"/>
+
+   - En cada una de las cards de la publicación también podrá visualizar los iconos de redes sociales para compartir una publicación, dando click sobre el icono compartir, o si la opción es guardar como favorito una publicación, podrá dar click sobre el icono del corazón, posteriormente visualizara sus favoritos en la página del perfil
+    
+  <img width="100%" height="auto" src="https://res.cloudinary.com/dd8l8bm6q/image/upload/v1694715923/l1pazzxszxyetw5dxbca.jpg" height="175px"/>
   
    - Si da click en perfil se dirigirá a la pagina del perfil donde podrá visualizar sus datos personales y las publicaciónes que ha guardado como favoritas
     
@@ -138,5 +146,8 @@ En caso de no tener node instalado puede instalarlo con el comando:
    localhost:3000
    ```
 
+- Si se desea es posible descargar la imagen desde DockerHub corriendo el siguiente comando
 
-
+```sh
+  docker pull marianto38/repvi:latest
+   ```
