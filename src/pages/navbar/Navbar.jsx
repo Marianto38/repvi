@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useContext, useState } from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -6,16 +6,12 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
-import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import MailIcon from '@mui/icons-material/Mail';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
-//import './navbar.scss'
 import { AiFillPlusCircle } from 'react-icons/ai';
 import ModalCreatePost from '../../components/modalCreatePost/ModalCreatePost';
 import { useNavigate } from 'react-router-dom';
@@ -70,9 +66,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 
 const Navbar = () => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-  const [open, setOpen] = React.useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
+  const [open, setOpen] = useState(false);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -119,7 +115,7 @@ const Navbar = () => {
     handleMenuClose();
   }
 
-  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const handleMobileMenuOpened = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
@@ -136,7 +132,7 @@ const Navbar = () => {
     { icon: <FaRoad />, text: 'Estado de vías' },
   ];
 
-  const { searchValue, setSearchValue } = React.useContext(AppContext);
+  const { searchValue, setSearchValue } = useContext(AppContext);
 
  
   const menuId = 'primary-search-account-menu';
@@ -184,12 +180,13 @@ const Navbar = () => {
     </Menu>
   );
 
+
   return (
     <>
       {mobileMenuOpen ? <NavbarLeft listItems={listItems} /> : null}
 
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="fixed">
+        <AppBar position="fixed" >
           <Toolbar>
             <IconButton
               size="large"

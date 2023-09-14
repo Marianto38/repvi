@@ -3,8 +3,6 @@ import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import './modalEdit.scss'
 import { editPostById } from '../../services/editPostById';
 import Swal from 'sweetalert2';
@@ -23,8 +21,8 @@ const style = {
 
 
 export default function ModalEdit({ open, setOpen, postToEdit }) {
-  // const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
+
+ // const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   const [editedTitle, setEditedTitle] = useState('Cargando...');
@@ -60,7 +58,6 @@ export default function ModalEdit({ open, setOpen, postToEdit }) {
 
   return (
     <div>
-      {/* <Button onClick={handleOpen}>Open modal</Button> */}
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -76,20 +73,12 @@ export default function ModalEdit({ open, setOpen, postToEdit }) {
       >
         <Fade in={open}>
           <Box sx={style}>
-            {/* <Typography id="transition-modal-title" variant="h6" component="h2">
-              Text in a modal
-            </Typography>
-            <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-            </Typography> */}
-
             <section>
               <div className='container__edit'>
                 <div className='container__edit__header'>
                   <button className='container__edit__headerBtn' onClick={handleClose}>Cancelar</button>
                   <h3>Editar Publicación</h3>
-                  <button className='container__edit__headerBtn' onClick={handleConfirmEditPost}>Listo</button>
-
+                  <button className='container__edit__headerBtn' onClick={handleConfirmEditPost}>Guardar</button>
                 </div>
                 <div className='container__edit__content'>
                   <textarea
@@ -97,17 +86,15 @@ export default function ModalEdit({ open, setOpen, postToEdit }) {
                     value={editedTitle}
                     className="container__edit__inputPost"
                     rows="3"
-                    onChange={(e) => setEditedTitle(e.target.value)} // Actualiza el estado editedTitle
+                    onChange={(e) => setEditedTitle(e.target.value)} 
                   ></textarea>
                   <textarea
                     type="text"
                     value={editedBody}
                     className="container__edit__inputDescription"
                     rows="8"
-                    onChange={(e) => setEditedBody(e.target.value)} // Actualiza el estado editedBody
+                    onChange={(e) => setEditedBody(e.target.value)} 
                   ></textarea>
-
-
                 </div>
               </div>
             </section>
