@@ -2,17 +2,7 @@
 
 REPVI es un proyecto de software web diseñado para proporcionar una experiencia de usuario intuitiva y eficiente en el ámbito de la seguridad vial, está dirigida a individuos interesados en mantenerse informados y reportar cualquier novedad relacionada con el tráfico y la seguridad vial en su entorno cercano.
 
-### Aspectos Destacados del Proyecto
-
-1. **Experiencia Intuitiva de Donación**: CorpoAyapel ofrece una plataforma fácil de usar que permite a los usuarios donar sin esfuerzo, ya sea mediante una contribución única o una suscripción periódica. El proceso es sencillo, lo que permite a las personas apoyar sus causas elegidas sin complicaciones.
-
-2. **Gestión Eficiente del Sitio**: Con CorpoAyapel, las organizaciones tienen control total sobre el contenido de su sitio web. Pueden actualizar información, compartir noticias, subir imágenes, videos y gestionar consultas de los usuarios de manera efectiva. Esta característica agiliza la administración del sitio, asegurando que la información esté siempre actualizada.
-
-3. **Interacción Directa**: CorpoAyapel fomenta la comunicación directa entre las organizaciones y sus interesados. Los usuarios, voluntarios y empresas que desean hacer donaciones pueden interactuar uno a uno con la organización, fomentando la transparencia y estableciendo conexiones significativas.
-
-4. **Diseño Moderno y Minimalista**: El proyecto presenta un diseño moderno y minimalista del sitio web, ofreciendo una experiencia de navegación sin complicaciones para los usuarios. Este enfoque garantiza que la información se presente de manera clara y concisa, facilitando la navegación por todo el sitio.
-
-#### Para los Usuarios
+#### Aspectos destacados para los Usuarios
 
 - Información en Tiempo Real: REPVI proporciona acceso instantáneo a datos precisos sobre el tráfico, accidentes, incidentes, restricciones, pico y placa, cierres viales, estados de las vias, construcciones en carreteras y otros eventos viales que puedan afectar su trayecto diario. Mantenter al usuario al tanto de lo que está sucediendo en tiempo real.
 
@@ -81,10 +71,19 @@ En caso de no tener node instalado puede instalarlo con el comando:
    npm start
    ```
 
-## Documentacion
+### Generalidades
+## Esta aplicación web, está construida con las tecnologías:
 
-[Documentacion](https://github.com/MAKAIABootcamp/corpoAyapelPage-project-front-4/wiki)
-![image](https://github.com/MAKAIABootcamp/corpoAyapelPage-project-front-4/assets/37349818/ccf67899-b1ec-49a2-95b7-429eba47bf5b)
+- React Js: Para la construcción de la interfaz de usuario.
+- React Router Dom: Para el enrutamiento de la aplicación web.
+- SASS: Como preprocesador de CSS.
+- Axios: Para las solicitudes POST, PATCH y  DELETE en el consumo de la API.
+- Git: Para el control de versiones.
+- GitHub: Para rastrear y administrar diferentes versiones del código fuente, alojar el repositorio del código del proyecto de manera remota.
+- Material UI: Para el uso de componentes predefinidos y personalizarlos.
+- Sweetalert2: Para el manejo de alertas y confirmaciones.
+- Hook Form: Para el manejo de formularios.
+- Yup: Para el manejo de validaciones
 
 
 <div align="center"> 
@@ -118,7 +117,7 @@ En caso de no tener node instalado puede instalarlo con el comando:
 
 3. Abrir el puerto local
    ```sh
-   localhost3000:3000
+   localhost:3000
    ```
 
 
