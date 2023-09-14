@@ -12,9 +12,10 @@ REPVI es un proyecto de software web diseñado para proporcionar una experiencia
 
 ## Caracteristicas/Funcionalidades
 
-- Consultar, Editar, Agregar y eliminar publicaciones
+- Consultar, editar, agregar y eliminar publicaciones
 - Guardar publicaciones como favoritas
-- Formularios sencillos
+- Filtro de búsqueda de publicaciones
+- Formularios de fácil comprensión
 
 ## Demo
 
