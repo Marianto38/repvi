@@ -129,7 +129,7 @@ export default function PostCard({ post }) {
 
   return (
     <div style={{ height: 'auto' }}>
-      <Card sx={{ maxWidth: 345 }}>
+      <Card sx={{ maxWidth: 345 }} className='postCard__card'>
         <CardHeader
           avatar={
             <Avatar sx={{ bgcolor: avatarBackgroundColor }} aria-label="recipe">
@@ -150,7 +150,7 @@ export default function PostCard({ post }) {
           subheader={usersData.name}
         />
         <CardContent>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="body2" color="text.secondary" style={{fontSize:'14px'}}>
             {post.body}
           </Typography>
         </CardContent>

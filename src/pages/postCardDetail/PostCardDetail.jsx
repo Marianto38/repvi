@@ -91,19 +91,21 @@ const PostCardDetail = () => {
     const [showMenuCard, setShowMenuCard] = useState(false)
 
     const Item = styled(Paper)(({ theme }) => ({
+        height: '80vh',
         backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
         ...theme.typography.body2,
         padding: theme.spacing(1),
         textAlign: 'center',
         color: theme.palette.text.secondary,
+        borderRadius: '2rem'
     }));
 
 
     return (
         <div style={{ padding: '1% 5% 0 5%', marginTop: '64px' }}>
             <Box sx={{ flexGrow: 1 }} style={{ borderRadius: '1rem' }}>
-                <Grid container spacing={0} columns={16}>
-                    <Grid xs={8}>
+                <Grid container spacing={0} columns={16} >
+                    <Grid xs={16} sm={8} >
                         <Item>
                             <CardActions disableSpacing>
                                 <IconButton aria-label="add to favorites">
@@ -114,6 +116,7 @@ const PostCardDetail = () => {
                                 </IconButton>
                             </CardActions>
                             <CardHeader
+                            className='postCardDetail__cardHeader'
                                 avatar={
                                     <Avatar sx={{ bgcolor: avatarBackgroundColor }} aria-label="recipe">
                                         {initialsName}
@@ -133,16 +136,16 @@ const PostCardDetail = () => {
                                 title={postData.title}
                                 subheader={usersData.name}
                             />
-                            <CardContent>
-                                <Typography variant="body2" color="text.secondary">
+                            <CardContent className='postCardDetail__cardContent'>
+                                <Typography variant="body2" color="text.secondary" className='postCardDetail__typografy'>
                                     {postData.body}
                                 </Typography>
                             </CardContent>
                         </Item>
                     </Grid>
-                    <Grid xs={8}>
+                    <Grid xs={16} sm={8}>
                         <Item>
-                            <CardContent>
+                            <CardContent className='postCardDetail__cardContent'>
                                 {commentsData.map((comment, index) => (
                                     <Typography key={index} className='comments__content' >
                                         <div className='comments__card'>

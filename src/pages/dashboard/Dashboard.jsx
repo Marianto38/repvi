@@ -141,17 +141,19 @@ function Dashboard() {
                 <TableRow>
                     <TableCell padding="checkbox">
                         <Checkbox
-                            color="primary"
+                            // color="#D2E603"
                             indeterminate={numSelected > 0 && numSelected < rowCount}
                             checked={rowCount > 0 && numSelected === rowCount}
                             onChange={onSelectAllClick}
                             inputProps={{
                                 'aria-label': 'select all desserts',
                             }}
+                            className='dashboard__checkbox' 
                         />
                     </TableCell>
                     {headCells.map((headCell) => (
                         <TableCell
+                        style={{fontWeight:'bold'}}
                             key={headCell.id}
                             align={headCell.numeric ? 'right' : 'left'}
                             padding={headCell.disablePadding ? 'none' : 'normal'}
@@ -237,6 +239,7 @@ function Dashboard() {
 
         return (
             <Toolbar
+            className='dashboard__toolbar'
                 sx={{
                     pl: { sm: 2 },
                     pr: { xs: 1, sm: 1 },
@@ -407,7 +410,7 @@ function Dashboard() {
             {showNavbarLeft && <NavbarLeft listItems={listItems} />}
             <div style={{ marginLeft, marginTop: '64px' }}>
                 <Box sx={{ width: '95%' }}>
-                    <Paper sx={{ width: '100%', mb: 2 }}>
+                    <Paper sx={{ width: '100%', mb: 2 }} className='dashboard__paper'>
                         {userData.length > 0 ? (
                             <div>
                                 <EnhancedTableToolbar numSelected={selected.length} />
@@ -441,17 +444,20 @@ function Dashboard() {
                                                             tabIndex={-1}
                                                             selected={isItemSelected}
                                                             sx={{ cursor: 'pointer' }}
+                                                            className='dashboard__tablerow'
                                                         >
-                                                            <TableCell padding="checkbox">
+                                                            <TableCell padding="checkbox" className='dashboard__tablecell' style={{borderRadius:'2rem 0 0 2rem'}}>
                                                                 <Checkbox
                                                                     color="primary"
                                                                     checked={isItemSelected}
                                                                     inputProps={{
                                                                         'aria-labelledby': labelId,
                                                                     }}
+                                                                    className='dashboard__checkbox'
                                                                 />
                                                             </TableCell>
                                                             <TableCell
+                                                            className='dashboard__tablecell'
                                                                 component="th"
                                                                 id={labelId}
                                                                 scope="row"
@@ -459,9 +465,10 @@ function Dashboard() {
                                                             >
                                                                 {row.title}
                                                             </TableCell>
-                                                            <TableCell align="right">{row.body}</TableCell>
-                                                            <TableCell>
+                                                            <TableCell className='dashboard__tablecell'>{row.body}</TableCell>
+                                                            <TableCell className='dashboard__tablecell' style={{borderRadius:'0 2rem 2rem 0'}}>
                                                                 <IconButton
+                                                                className='dashboard__iconbutton'
                                                                     aria-label="expand row"
                                                                     size="small"
                                                                     onClick={(event) => handleRowExpand(event, row)}
@@ -498,6 +505,7 @@ function Dashboard() {
                                                                                                         key={column.id}
                                                                                                         align="left"
                                                                                                         style={{ minWidth: column.minWidth }}
+                                                                                                        className='dashboard__tablecell'
                                                                                                     >
                                                                                                         {column.label}
                                                                                                     </TableCell>
@@ -507,9 +515,9 @@ function Dashboard() {
                                                                                         <TableBody>
                                                                                             {commentsData.map((row) => (
                                                                                                 <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
-                                                                                                    <TableCell align="left">{row.email}</TableCell>
-                                                                                                    <TableCell align="left">{row.name}</TableCell>
-                                                                                                    <TableCell align="left">{row.body}</TableCell>
+                                                                                                    <TableCell className='dashboard__tablecell'>{row.email}</TableCell>
+                                                                                                    <TableCell className='dashboard__tablecell'>{row.name}</TableCell>
+                                                                                                    <TableCell className='dashboard__tablecell'>{row.body}</TableCell>
                                                                                                 </TableRow>
                                                                                             ))}
                                                                                         </TableBody>
