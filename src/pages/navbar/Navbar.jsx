@@ -23,6 +23,7 @@ import { TbCarOff, TbIdBadgeOff } from 'react-icons/tb';
 import { RiFileList3Fill } from 'react-icons/ri';
 import { GiBurningTree } from 'react-icons/gi';
 import { AppContext } from '../../components/appContext/AppContext';
+import './navbar.scss'
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -185,9 +186,9 @@ const Navbar = () => {
     <>
       {mobileMenuOpen ? <NavbarLeft listItems={listItems} /> : null}
 
-      <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="fixed" >
-          <Toolbar>
+      <Box sx={{ flexGrow: 1 }} >
+        <AppBar position="fixed" className='navbar__background' >
+          <Toolbar  >
             <IconButton
               size="large"
               edge="start"
@@ -195,6 +196,7 @@ const Navbar = () => {
               aria-label="open drawer"
               sx={{ mr: 2 }}
               onClick={handleMobileMenuOpened}
+              className='navbar__icon'
             >
               <MenuIcon />
             </IconButton>
@@ -224,8 +226,6 @@ const Navbar = () => {
                   }
                 }}
               />
-
-
             </Search>
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>

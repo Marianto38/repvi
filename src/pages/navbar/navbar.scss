@@ -1,23 +1,40 @@
 @import '../../index.scss';
 
-.css-hyum1k-MuiToolbar-root {
-    background-color: $secondary-color !important;
-    color: $dark-color;
-}
-.css-cveggr-MuiListItemIcon-root {
-    min-width: 28px !important;
-}
+// .css-hyum1k-MuiToolbar-root {
+//    background-color: $secondary-color !important;
+//     color: $dark-color;
+// }
+// .css-cveggr-MuiListItemIcon-root {
+//     min-width: 28px !important;
+// }
 
 .btn__post {
     font-size: 1rem;
     margin-right: .5rem;
 }
-.css-1pz7awu-MuiButtonBase-root-MuiIconButton-root:hover {
-    background-color: $primary-color !important;
-    border-radius: 2rem !important;
-}
 
-.css-1pz7awu-MuiButtonBase-root-MuiIconButton-root {
-background-color: rgba(255, 255, 255, 0.15) !important;
-border-radius: 2rem !important;
+// .css-1pz7awu-MuiButtonBase-root-MuiIconButton-root:hover {
+//     background-color: $primary-color !important;
+//     border-radius: 2rem !important;
+// }
+
+// .css-1pz7awu-MuiButtonBase-root-MuiIconButton-root {
+//     background-color: rgba(255, 255, 255, 0.15) !important;
+//     border-radius: 2rem !important;
+// }
+
+.navbar {
+    &__background {
+        background-color: $secondary-color !important;
+        color: $dark-color !important;
+    }
+
+    &__icon {
+        min-width: 28px !important;
+
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.15) !important;
+            border-radius: 2rem !important;
+        }
+    }
 }
