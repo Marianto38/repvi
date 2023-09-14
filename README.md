@@ -72,12 +72,40 @@ En caso de no tener node instalado puede instalarlo con el comando:
 - Yup: Para el manejo de validaciones
 
 
-<div align="center"> 
-  <h2>Vistas Principales</h2>
-  <img width="100%" height="auto" src="" height="175px"/>
-  <img width="100%" height="auto" src="" height="175px"/>
-  <img width="100%" height="auto" src="" height="175px"/>
+<div align="justify"> 
+  <h2>Uso de la aplicación</h2>
+   
+   - Un usuario logueado inicia en la pagina dashboard donde puede visualizar todos las publicaciones que ha realizado y los comentarios que ha recibido de esas publicaciones, seleccionando cada publicación, puede escoger la opción de eliminar o editar la misma.
+     
+  <img width="100%" height="auto" src="https://res.cloudinary.com/dd8l8bm6q/image/upload/v1694702405/hm8ezxogetjddbdvdd7y.jpg" height="175px"/>
+  
+   - Si da click en eliminar se desplegará un modal en el cual podrá confirmar su decisión.
+     
+  <img width="100%" height="auto" src="https://res.cloudinary.com/dd8l8bm6q/image/upload/v1694702405/hbi2pqe5sdw1cosbrhn8.jpg" height="175px"/>
+
+ - Si selecciona editar se desplegará el modal con la información correspondiente a la publicación para realizar los cambios pertinentes
+    
+  <img width="100%" height="auto" src="https://res.cloudinary.com/dd8l8bm6q/image/upload/v1694702404/kh5lt1fq5hqslcejis1b.jpg" height="175px"/>
+  
+  - En la navbar superior, encontrará el buscador que permite realizar el filtro de las publicaciones que tenga coincidencias, y en al dar click en el icono de usuario puede ver las opciones para dirigirse al perfil o al dashboard
+    
+  <img width="100%" height="auto" src="https://res.cloudinary.com/dd8l8bm6q/image/upload/v1694702404/eitnddea5vrrfcaxsjr6.jpg" height="175px"/>
+  
+   - Si da click en perfil se dirigirá a la pagina del perfil donde podrá visualizar sus datos personales y las publicaciónes que ha guardado como favoritas
+    
+  <img width="100%" height="auto" src="https://res.cloudinary.com/dd8l8bm6q/image/upload/v1694702404/kbcjwraze6mjfdbbyajf.jpg" height="175px"/>
+  
+
 </div>
+
+<div align="center"> 
+   
+  <h2>Vista Mobile</h2> 
+   
+   <img  height="400px" widht='400px' src="https://res.cloudinary.com/dd8l8bm6q/image/upload/v1694702404/e99ynwxup9hlyodlxjmz.jpg" />
+   <img  height="400px" widht='400px' src="https://res.cloudinary.com/dd8l8bm6q/image/upload/v1694702404/sllwshn4inp59htc5twc.jpg" />
+   <img  height="400px" widht='400px' src="https://res.cloudinary.com/dd8l8bm6q/image/upload/v1694702404/ndv4rbk7fpif3fzwq4qw.jpg" />
+  </div>
 
 ## Despliegue
 
