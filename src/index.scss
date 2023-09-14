@@ -47,26 +47,3 @@ h1 {
   background-color: #ddd; /* Cambia el color de fondo al pasar el mouse por encima */
 }
 
-// navbar
-
-.css-hyum1k-MuiToolbar-root {
-  background-color: $secondary-color !important;
-  color: $dark-color;
-}
-.css-cveggr-MuiListItemIcon-root {
-  min-width: 28px !important;
-}
-
-.btn__post {
-  font-size: 1rem;
-  margin-right: .5rem;
-}
-.css-1pz7awu-MuiButtonBase-root-MuiIconButton-root:hover {
-  background-color: $primary-color !important;
-  border-radius: 2rem !important;
-}
-
-.css-1pz7awu-MuiButtonBase-root-MuiIconButton-root {
-background-color: rgba(255, 255, 255, 0.15) !important;
-border-radius: 2rem !important;
-}
