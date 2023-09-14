@@ -6,22 +6,26 @@ import Home from "../pages/home/Home";
 import Dashboard from "../pages/dashboard/Dashboard";
 import PostCardDetail from "../pages/postCardDetail/PostCardDetail";
 import Profile from "../pages/profile/Profile";
+import { AppProvider } from "../components/appContext/AppContext";
 
 const AppRouter = () => {
   return (
     <BrowserRouter>
+    <AppProvider>
       <Routes>
         <Route
           path="/"
           element={<Layout />}
         >
-          <Route index element={<Home />} />
+          <Route index element={<Dashboard />} />
+           <Route path="home" element={<Home />} /> 
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="perfil" element={<Profile />} />
           <Route path="/detalle-publicacion/:idPostCard" element={<PostCardDetail />} />
         </Route>
         <Route path="*" element={<Error404 />} />
       </Routes>
+      </AppProvider>
     </BrowserRouter>
   );
 };

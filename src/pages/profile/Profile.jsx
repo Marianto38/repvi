@@ -25,9 +25,9 @@ import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
 const Profile = () => {
 
     const listItems = [
-        { icon: <FaHome />, text: 'Inicio' },
-        { icon: <BsFillPatchPlusFill />, text: 'Publicar' },
-        { icon: <CgProfile />, text: 'Perfil' },
+        { icon: <FaHome />, text: 'Inicio', root:'/home' },
+        // { icon: <BsFillPatchPlusFill />, text: 'Publicar' },
+        { icon: <CgProfile />, text: 'Dashboard', root:'/dashboard' },
         // { icon: <BiPhotoAlbum />, text: 'Mi Galería' },
     ];
 
@@ -36,6 +36,10 @@ const Profile = () => {
     const [avatarBackgroundColor, setAvatarBackgroundColor] = useState([]);
     const avatarColors = ['#D61C4E', '#2EC1AC', '#D2E603', '#9c27b0'];
     const navigate = useNavigate();
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const [showNavbarLeft, setShowNavbarLeft] = useState(true); 
+    const [marginLeft, setMarginLeft] = useState('200px');
+  
 
     const userId = 1
 
@@ -63,29 +67,56 @@ const Profile = () => {
             .catch((err) => {
                 console.error(err);
             });
+
+            const handleResize = () => {
+                setWindowWidth(window.innerWidth);
+              };
+          
+              window.addEventListener('resize', handleResize);
+              return () => {
+                window.removeEventListener('resize', handleResize);
+              };
     }, []);
-        
+
+
+    useEffect(() => {
+        if (windowWidth <= 500) { 
+          setShowNavbarLeft(false);
+          setMarginLeft('0px');
+        } else {
+          setShowNavbarLeft(true);
+          setMarginLeft('200px');
+        }
+      }, [windowWidth]);
+
     let posts = JSON.parse(localStorage.getItem("posts"));
     return (
         <>
-            <NavbarLeft listItems={listItems} />
-            <div style={{ marginLeft: '200px', marginTop: '64px' }}>
+          {showNavbarLeft && <NavbarLeft listItems={listItems} />}
+            <div style={{ marginLeft, marginTop: '64px' }}>
                 <div className='profile__container'>
-                    <div className='profile__container__left'>
-                        <h3 className='profile__container__left__title'>MIS FAVORITOS</h3>
-                         <Divider variant="inset" component="div" />
-                        
-                        <ResponsiveMasonry
-                            columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}
-                        >
-                            <Masonry>
-                                {posts.map((post, index) => (
-                                    <PostCard key={post.id} post={post.post} />
-                                ))}
+                    {posts  ? (
+                        <div className='profile__container__left'>
+                            <h3 className='profile__container__left__title'>MIS FAVORITOS</h3>
+                            <Divider variant="inset" component="div" />
 
-                            </Masonry>
-                        </ResponsiveMasonry>
+                            <ResponsiveMasonry
+                                columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}
+                            >
+                                <Masonry>
+                                    {posts.map((post, index) => (
+                                        <PostCard key={post.id} post={post.post} />
+                                    ))}
+
+                                </Masonry>
+                            </ResponsiveMasonry>
+                        </div>
+                    ) :
+                    <div className='profile__container__left'>
+                          <h3 className='profile__container__left__title'>MIS FAVORITOS</h3>
+                          <Divider variant="inset" component="div" />
                     </div>
+                    }
 
 
                     <div className='profile__container__right'>
@@ -98,12 +129,12 @@ const Profile = () => {
                         </div>
                         {userData && (
                             <List
-                                style={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+                                style={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper'}}
                             >
 
                                 <ListItem>
-                                    <ListItemAvatar>
-                                        <Avatar sx={{ bgcolor: '#D61C4E' }} aria-label="recipe">
+                                    <ListItemAvatar >
+                                        <Avatar sx={{ bgcolor: '#D61C4E'}} aria-label="recipe">
                                             {initialsName}
                                         </Avatar>
                                     </ListItemAvatar>
@@ -127,7 +158,7 @@ const Profile = () => {
                                     </ListItemAvatar>
                                     <ListItemText primary={userData.email} secondary={userData.phone} />
                                 </ListItem>
-                                 <Divider variant="inset" component="li" />
+                                <Divider variant="inset" component="li" />
                                 <ListItem>
                                     <ListItemAvatar>
                                         <Avatar sx={{ bgcolor: '#9c27b0' }}>
