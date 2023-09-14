@@ -15,6 +15,7 @@ REPVI es un proyecto de software web diseñado para proporcionar una experiencia
 - Consultar, editar, agregar y eliminar publicaciones
 - Guardar publicaciones como favoritas
 - Filtro de búsqueda de publicaciones
+- Compartir una publicación a traves de redes sociales (facebook, instagram y whatsapp)
 - Formularios de fácil comprensión
 
 ## Demo
