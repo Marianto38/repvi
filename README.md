@@ -91,17 +91,19 @@ En caso de no tener node instalado puede instalarlo con el comando:
 [instalar docker](https://docs.docker.com/desktop/install/windows-install/)
 ### Dockerización de la aplicación
 
-1. Iniciar la construcción de la imagen
+-Ubicarse en el directorio raíz del proyecto y correr el siguiente comando:
+
+1. Iniciar la construcción de la imagen:
    ```sh
    docker build -t repvi .
    ```
    
-2. Levantar la imagen
+3. Levantar la imagen, elige el puerto disponible en tu local, por defecto se levantará en el 3000
    ```sh
    docker run -d -p 3000:3000 repvi
    ```
 
-3. Abrir el puerto local
+4. Abrir una nueva  pestaña del navegador e ingresar el puerto seleccionado en el paso anterior 
    ```sh
    localhost:3000
    ```
