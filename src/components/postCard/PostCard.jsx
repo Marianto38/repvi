@@ -98,6 +98,19 @@ export default function PostCard({ post }) {
 
   const [showMenuCard, setShowMenuCard] = useState(false)
 
+  const [colorHeart, setColorHeart] = useState('#2EC1AC')
+
+  const handleSaveFavorites = () => {
+    setColorHeart('red')
+    // ************************Crear Favorito de post info ************************
+
+    let posts = JSON.parse(localStorage.getItem("posts")) || [];
+    const newPost = { post, commentsData, usersData};
+    posts.push(newPost);
+    localStorage.setItem("posts", JSON.stringify(posts));
+
+  }
+
   return (
     <div style={{ height: 'auto' }}>
 
@@ -129,8 +142,8 @@ export default function PostCard({ post }) {
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
-          <IconButton aria-label="add to favorites">
-            <FavoriteIcon />
+          <IconButton aria-label="add to favorites" onClick={handleSaveFavorites} >
+            <FavoriteIcon style={{ color: colorHeart }} />
           </IconButton>
           <IconButton aria-label="share">
             <ShareIcon />
