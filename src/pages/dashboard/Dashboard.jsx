@@ -32,6 +32,7 @@ import ModalEdit from '../../components/modal/ModalEdit';
 import { FaHome } from 'react-icons/fa';
 import { CgProfile } from 'react-icons/cg';
 import NavbarLeft from '../navbar/NavbarLeft';
+import LocalLoader from '../../components/localLoader/LocalLoader';
 
 
 function Dashboard() {
@@ -515,7 +516,7 @@ function Dashboard() {
                                                                                     </Table>
                                                                                 </TableContainer>
                                                                             ) : (
-                                                                                <div>Cargando...</div>
+                                                                                <LocalLoader/>
                                                                             )}
                                                                         </Paper>
                                                                     </Box>
@@ -548,7 +549,7 @@ function Dashboard() {
                                 />
                             </div>
                         ) : (
-                            <div>Cargando...</div>
+                            <LocalLoader/>
                         )}
                     </Paper>
                 </Box>

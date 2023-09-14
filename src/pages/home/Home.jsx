@@ -1,33 +1,30 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { FaHome } from 'react-icons/fa';
-import { BsFillHeartPulseFill } from 'react-icons/bs';
-import { CgProfile } from 'react-icons/cg';
-import { BiPhotoAlbum, BiSolidHotel, BiSolidTrafficBarrier, BiSolidTrafficCone } from 'react-icons/bi';
+import { BiSolidTrafficBarrier, BiSolidTrafficCone } from 'react-icons/bi';
 import { RiFileList3Fill } from 'react-icons/ri';
-import { MdDiscount } from 'react-icons/md';
 import NavbarLeft from '../navbar/NavbarLeft';
-import { FaMapLocationDot, FaLightbulb, FaClipboardList, FaPersonWalkingLuggage, FaCarBurst } from 'react-icons/fa6';
+import { FaClipboardList,  FaCarBurst } from 'react-icons/fa6';
 import PostCard from '../../components/postCard/PostCard';
 import { getAllPosts } from '../../services/getAllPosts';
 import './home.scss'
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
-import { GiTrafficLightsGreen, GiBurningTree } from 'react-icons/gi';
+import {  GiBurningTree } from 'react-icons/gi';
 import { FaRoad } from 'react-icons/fa';
 import { TbCarOff, TbIdBadgeOff } from 'react-icons/tb';
 import { AppContext } from '../../components/appContext/AppContext';
+import LocalLoader from '../../components/localLoader/LocalLoader';
 
 
 const Home = () => {
   const listItems = [
-    { icon: <FaCarBurst />, text: 'Accidentes'},
-    { icon: <BiSolidTrafficCone />, text: 'Incidentes' },
-    { icon: <FaClipboardList />, text: 'Trancones' },
-    { icon: <TbCarOff />, text: 'Pico y placa' },
-    { icon: <RiFileList3Fill />, text: 'Restricciones' },
-    { icon: <TbIdBadgeOff />, text: 'Conducta inapropiada' },
-    { icon: <GiBurningTree />, text: 'Catástrofes naturales' },
-    { icon: <BiSolidTrafficBarrier />, text: 'Cierres' },
-    { icon: <FaRoad />, text: 'Estado de vías' },
+    { icon: <FaCarBurst />, text: 'Accidentes', root:'/home'},
+    { icon: <BiSolidTrafficCone />, text: 'Incidentes', root:'/home' },
+    { icon: <FaClipboardList />, text: 'Trancones', root:'/home' },
+    { icon: <TbCarOff />, text: 'Pico y placa', root:'/home' },
+    { icon: <RiFileList3Fill />, text: 'Restricciones', root:'/home' },
+    { icon: <TbIdBadgeOff />, text: 'Conducta inapropiada', root:'/home' },
+    { icon: <GiBurningTree />, text: 'Catástrofes naturales', root:'/home' },
+    { icon: <BiSolidTrafficBarrier />, text: 'Cierres', root:'/home' },
+    { icon: <FaRoad />, text: 'Estado de vías', root:'/home' },
   ];
 
   const [postsData, setPostsData] = useState([]);
@@ -65,21 +62,11 @@ const Home = () => {
     }
   }, [windowWidth]);
 
-  const styles = {
-    pin_container: {
-      display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
-      gap: '20px',
-    },
-  };
-
-  const { searchValue, setSearchValue } = useContext(AppContext);
+  const { searchValue } = useContext(AppContext);
 
   const filteredPosts = postsData.filter((post) => {
     const { body, title } = post;
-    const searchTerm = searchValue.toLowerCase(); // Convertir a minúsculas para hacer la búsqueda sin distinción de mayúsculas
-
-    // Verificar si el título o el cuerpo del post contiene la búsqueda
+    const searchTerm = searchValue.toLowerCase(); 
     return title.toLowerCase().includes(searchTerm) || body.toLowerCase().includes(searchTerm);
   });
 
@@ -101,7 +88,7 @@ const Home = () => {
               />
             ))
           ) : (
-            "No se encontraron resultados."
+            <LocalLoader/>
           )}
         </Masonry>
       </ResponsiveMasonry>

@@ -1,20 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import './profile.scss'
 import { FaHome } from 'react-icons/fa';
-import { BsFillPatchPlusFill } from 'react-icons/bs';
 import { CgProfile } from 'react-icons/cg';
-import { BiPhotoAlbum } from 'react-icons/bi';
 import NavbarLeft from '../navbar/NavbarLeft';
-import { useNavigate } from 'react-router-dom';
 import { getUserById } from '../../services/getUserById';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
-import ImageIcon from '@mui/icons-material/Image';
-import WorkIcon from '@mui/icons-material/Work';
-import BeachAccessIcon from '@mui/icons-material/BeachAccess';
 import Divider from '@mui/material/Divider';
 import { FaLocationDot } from 'react-icons/fa6';
 import { MdOutlineAlternateEmail } from 'react-icons/md';
@@ -25,21 +19,21 @@ import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
 const Profile = () => {
 
     const listItems = [
-        { icon: <FaHome />, text: 'Inicio', root:'/home' },
+        { icon: <FaHome />, text: 'Inicio', root: '/home' },
         // { icon: <BsFillPatchPlusFill />, text: 'Publicar' },
-        { icon: <CgProfile />, text: 'Dashboard', root:'/dashboard' },
+        { icon: <CgProfile />, text: 'Dashboard', root: '/dashboard' },
         // { icon: <BiPhotoAlbum />, text: 'Mi Galería' },
     ];
 
     const [userData, setUserData] = useState([]);
     const [initialsName, setInitialsName] = useState([]);
-    const [avatarBackgroundColor, setAvatarBackgroundColor] = useState([]);
+    const [ setAvatarBackgroundColor] = useState([]);
     const avatarColors = ['#D61C4E', '#2EC1AC', '#D2E603', '#9c27b0'];
-    const navigate = useNavigate();
+   // const navigate = useNavigate();
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-    const [showNavbarLeft, setShowNavbarLeft] = useState(true); 
+    const [showNavbarLeft, setShowNavbarLeft] = useState(true);
     const [marginLeft, setMarginLeft] = useState('200px');
-  
+
 
     const userId = 1
 
@@ -68,34 +62,34 @@ const Profile = () => {
                 console.error(err);
             });
 
-            const handleResize = () => {
-                setWindowWidth(window.innerWidth);
-              };
-          
-              window.addEventListener('resize', handleResize);
-              return () => {
-                window.removeEventListener('resize', handleResize);
-              };
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
     }, []);
 
 
     useEffect(() => {
-        if (windowWidth <= 500) { 
-          setShowNavbarLeft(false);
-          setMarginLeft('0px');
+        if (windowWidth <= 500) {
+            setShowNavbarLeft(false);
+            setMarginLeft('0px');
         } else {
-          setShowNavbarLeft(true);
-          setMarginLeft('200px');
+            setShowNavbarLeft(true);
+            setMarginLeft('200px');
         }
-      }, [windowWidth]);
+    }, [windowWidth]);
 
     let posts = JSON.parse(localStorage.getItem("posts"));
     return (
         <>
-          {showNavbarLeft && <NavbarLeft listItems={listItems} />}
+            {showNavbarLeft && <NavbarLeft listItems={listItems} />}
             <div style={{ marginLeft, marginTop: '64px' }}>
                 <div className='profile__container'>
-                    {posts  ? (
+                    {posts ? (
                         <div className='profile__container__left'>
                             <h3 className='profile__container__left__title'>MIS FAVORITOS</h3>
                             <Divider variant="inset" component="div" />
@@ -112,13 +106,11 @@ const Profile = () => {
                             </ResponsiveMasonry>
                         </div>
                     ) :
-                    <div className='profile__container__left'>
-                          <h3 className='profile__container__left__title'>MIS FAVORITOS</h3>
-                          <Divider variant="inset" component="div" />
-                    </div>
+                        <div className='profile__container__left'>
+                            <h3 className='profile__container__left__title'>MIS FAVORITOS</h3>
+                            <Divider variant="inset" component="div" />
+                        </div>
                     }
-
-
                     <div className='profile__container__right'>
 
                         <div className='profile__container__right__avatar'>
@@ -129,12 +121,11 @@ const Profile = () => {
                         </div>
                         {userData && (
                             <List
-                                style={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper'}}
+                                style={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
                             >
-
                                 <ListItem>
                                     <ListItemAvatar >
-                                        <Avatar sx={{ bgcolor: '#D61C4E'}} aria-label="recipe">
+                                        <Avatar sx={{ bgcolor: '#D61C4E' }} aria-label="recipe">
                                             {initialsName}
                                         </Avatar>
                                     </ListItemAvatar>

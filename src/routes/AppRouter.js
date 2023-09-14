@@ -21,7 +21,7 @@ const AppRouter = () => {
            <Route path="home" element={<Home />} /> 
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="perfil" element={<Profile />} />
-          <Route path="/detalle-publicacion/:idPostCard" element={<PostCardDetail />} />
+          <Route path="/home/detalle-publicacion/:idPostCard" element={<PostCardDetail />} />
         </Route>
         <Route path="*" element={<Error404 />} />
       </Routes>

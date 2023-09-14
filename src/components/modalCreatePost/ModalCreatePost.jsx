@@ -1,15 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
-
-
 import Swal from 'sweetalert2';
 import { createPost } from '../../services/createPost';
 
@@ -43,7 +39,6 @@ export default function ModalCreatePost({ open, setOpen }) {
     const {
         register,
         handleSubmit,
-        watch,
         reset,
         formState: { errors },
     } = useForm({
@@ -57,16 +52,6 @@ export default function ModalCreatePost({ open, setOpen }) {
 
     //console.log(watch("bodyPost"))
 
-    // ************************ Data para enviar el post ************************
-
-
-    const postData = {
-        title: watch("titlePost"),
-        body: watch("bodyPost"),
-        userId: 1,
-    };
-
-    // console.log(postData);
 
     // ************************ Metodo submit para confirmar creación de post ************************
 
