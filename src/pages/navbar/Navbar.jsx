@@ -19,6 +19,14 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import { AiFillPlusCircle } from 'react-icons/ai';
 import ModalCreatePost from '../../components/modalCreatePost/ModalCreatePost';
 import { useNavigate } from 'react-router-dom';
+import NavbarLeft from './NavbarLeft';
+import { FaCarBurst } from 'react-icons/fa6';
+import { BiSolidTrafficBarrier, BiSolidTrafficCone } from 'react-icons/bi';
+import { FaClipboardList, FaRoad } from 'react-icons/fa';
+import { TbCarOff, TbIdBadgeOff } from 'react-icons/tb';
+import { RiFileList3Fill } from 'react-icons/ri';
+import { GiBurningTree } from 'react-icons/gi';
+import { AppContext } from '../../components/appContext/AppContext';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -62,193 +70,206 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 
 const Navbar = () => {
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-    const [open, setOpen] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const [open, setOpen] = React.useState(false);
 
-    const isMenuOpen = Boolean(anchorEl);
-    const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-  
-    const handleProfileMenuOpen = (event) => {
-      setAnchorEl(event.currentTarget);
-    };
-  
-    const handleMobileMenuClose = () => {
-      setMobileMoreAnchorEl(null);
-    };
-  
-    const handleMenuClose = () => {
-      setAnchorEl(null);
-      handleMobileMenuClose();
-    };
-  
-    const handleMobileMenuOpen = (event) => {
-      setMobileMoreAnchorEl(event.currentTarget);
-    };
+  const isMenuOpen = Boolean(anchorEl);
+  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-    const handleOpenModalCreatePost = () => {
-      console.log('abrir');
-      setOpen(true);  
-    }
+  const handleProfileMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
 
-    const navigate = useNavigate();
-    
+  const handleMobileMenuClose = () => {
+    setMobileMoreAnchorEl(null);
+  };
 
-    const handleGoToDashboard = () => {
-      navigate('dashboard');
-      handleMenuClose();
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+    handleMobileMenuClose();
+  };
 
-    }
+  const handleMobileMenuOpen = (event) => {
+    setMobileMoreAnchorEl(event.currentTarget);
+  };
 
-    const handleGoToHome = () => {
-      navigate('/');
-      handleMenuClose();
+  const handleOpenModalCreatePost = () => {
+    console.log('abrir');
+    setOpen(true);
+  }
 
-    }
+  const navigate = useNavigate();
 
-    const handleGoToProfile = () => {
-      navigate('perfil');
-      handleMenuClose();
 
-    }
-  
-    const menuId = 'primary-search-account-menu';
-    const renderMenu = (
-      <Menu
-        anchorEl={anchorEl}
-        anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
-        }}
-        id={menuId}
-        keepMounted
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
-        }}
-        open={isMenuOpen}
-        onClose={handleMenuClose}
-      >
-        <MenuItem onClick={handleGoToProfile}>Perfil</MenuItem>
-        <MenuItem onClick={handleGoToDashboard} >Dashboard</MenuItem>
-      </Menu>
-    );
-  
-    const mobileMenuId = 'primary-search-account-menu-mobile';
-    const renderMobileMenu = (
-      <Menu
-        anchorEl={mobileMoreAnchorEl}
-        anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
-        }}
-        id={mobileMenuId}
-        keepMounted
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
-        }}
-        open={isMobileMenuOpen}
-        onClose={handleMobileMenuClose}
-      >
-        <button>CREAR</button>
-        <MenuItem onClick={handleProfileMenuOpen}>
-          <IconButton
-            size="large"
-            aria-label="account of current user"
-            aria-controls="primary-search-account-menu"
-            aria-haspopup="true"
-            color="inherit"
-          >
-            <AccountCircle />
-          </IconButton>
-          <p>Profile</p>
-        </MenuItem>
-      </Menu>
-    );
-  
-    return (
-        <Box sx={{ flexGrow: 1 }}>
-          <AppBar position="fixed">
-            <Toolbar>
+  const handleGoToDashboard = () => {
+    navigate('dashboard');
+    handleMenuClose();
+
+  }
+
+  const handleGoToHome = () => {
+    navigate('/home');
+    handleMenuClose();
+
+  }
+
+  const handleGoToProfile = () => {
+    navigate('perfil');
+    handleMenuClose();
+  }
+
+  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+  const handleMobileMenuOpened = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
+
+  const listItems = [
+    { icon: <FaCarBurst />, text: 'Accidentes' },
+    { icon: <BiSolidTrafficCone />, text: 'Incidentes' },
+    { icon: <FaClipboardList />, text: 'Trancones' },
+    { icon: <TbCarOff />, text: 'Pico y placa' },
+    { icon: <RiFileList3Fill />, text: 'Restricciones' },
+    { icon: <TbIdBadgeOff />, text: 'Conducta inapropiada' },
+    { icon: <GiBurningTree />, text: 'Catástrofes naturales' },
+    { icon: <BiSolidTrafficBarrier />, text: 'Cierres' },
+    { icon: <FaRoad />, text: 'Estado de vías' },
+  ];
+
+  const { searchValue, setSearchValue } = React.useContext(AppContext);
+
+ 
+  const menuId = 'primary-search-account-menu';
+  const renderMenu = (
+    <Menu
+      anchorEl={anchorEl}
+      anchorOrigin={{
+        vertical: 'top',
+        horizontal: 'right',
+      }}
+      id={menuId}
+      keepMounted
+      transformOrigin={{
+        vertical: 'top',
+        horizontal: 'right',
+      }}
+      open={isMenuOpen}
+      onClose={handleMenuClose}
+    >
+      <MenuItem onClick={handleGoToProfile}>Perfil</MenuItem>
+      <MenuItem onClick={handleGoToDashboard} >Dashboard</MenuItem>
+    </Menu>
+  );
+
+  const mobileMenuId = 'primary-search-account-menu-mobile';
+  const renderMobileMenu = (
+    <Menu
+      anchorEl={mobileMoreAnchorEl}
+      anchorOrigin={{
+        vertical: 'top',
+        horizontal: 'right',
+      }}
+      id={mobileMenuId}
+      keepMounted
+      transformOrigin={{
+        vertical: 'top',
+        horizontal: 'right',
+      }}
+      open={isMobileMenuOpen}
+      onClose={handleMobileMenuClose}
+    >
+
+      <MenuItem onClick={handleGoToProfile}>Perfil</MenuItem>
+      <MenuItem onClick={handleGoToDashboard} >Dashboard</MenuItem>
+    </Menu>
+  );
+
+  return (
+    <>
+      {mobileMenuOpen ? <NavbarLeft listItems={listItems} /> : null}
+
+      <Box sx={{ flexGrow: 1 }}>
+        <AppBar position="fixed">
+          <Toolbar>
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="open drawer"
+              sx={{ mr: 2 }}
+              onClick={handleMobileMenuOpened}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              sx={{ display: { sm: 'block' } }}
+              onClick={handleGoToHome}
+              style={{ cursor: 'pointer' }}
+            >
+              <img src="https://res.cloudinary.com/dd8l8bm6q/image/upload//c_thumb,w_300,h_75,g_auto/v1694662578/bqmafim6janb7fzxcw7x.png" alt="" style={{ width: '160px' }} />
+            </Typography>
+            <Search >
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+              <StyledInputBase
+                placeholder="Search…"
+                inputProps={{ 'aria-label': 'search' }}
+                value={searchValue}
+                onChange={(e) => setSearchValue(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    // Realiza la búsqueda o la acción deseada aquí con el valor de searchValue
+                    console.log('Búsqueda realizada:', searchValue);
+                  }
+                }}
+              />
+
+
+            </Search>
+            <Box sx={{ flexGrow: 1 }} />
+            <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+              <IconButton size="large" aria-label="show 4 new mails" color="inherit" onClick={handleOpenModalCreatePost}>
+                <span className='btn__post'>
+                  PUBLICAR
+                </span>
+                <AiFillPlusCircle />
+              </IconButton>
+              <ModalCreatePost open={open} setOpen={setOpen} />
               <IconButton
                 size="large"
-                edge="start"
+                edge="end"
+                aria-label="account of current user"
+                aria-controls={menuId}
+                aria-haspopup="true"
+                onClick={handleProfileMenuOpen}
                 color="inherit"
-                aria-label="open drawer"
-                sx={{ mr: 2 }}
               >
-                <MenuIcon />
+                <AccountCircle />
               </IconButton>
-              <Typography
-                variant="h6"
-                noWrap
-                component="div"
-                sx={{ display: { xs: 'none', sm: 'block' } }}
-                onClick={handleGoToHome}
-                style={{cursor:'pointer'}}
+            </Box>
+            <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+              <IconButton
+                size="large"
+                aria-label="show more"
+                aria-controls={mobileMenuId}
+                aria-haspopup="true"
+                onClick={handleMobileMenuOpen}
+                color="inherit"
               >
-                MUI
-              </Typography>
-              <Search>
-                <SearchIconWrapper>
-                  <SearchIcon />
-                </SearchIconWrapper>
-                <StyledInputBase
-                  placeholder="Search…"
-                  inputProps={{ 'aria-label': 'search' }}
-                />
-              </Search>
-              <Box sx={{ flexGrow: 1 }} />
-              <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                 <IconButton size="large" aria-label="show 4 new mails" color="inherit" onClick={handleOpenModalCreatePost}>
-                  <span className='btn__post'>
-                    PUBLICAR
-                  </span>
-                  <AiFillPlusCircle/>
-                </IconButton>
-                <ModalCreatePost open={open} setOpen={setOpen}  />
-                {/* <IconButton
-                  size="large"
-                  aria-label="show 17 new notifications"
-                  color="inherit"
-                >
-                  <Badge badgeContent={17} color="error">
-                    <NotificationsIcon />
-                  </Badge>
-                </IconButton>  */}
-
-
-                <IconButton
-                  size="large"
-                  edge="end"
-                  aria-label="account of current user"
-                  aria-controls={menuId}
-                  aria-haspopup="true"
-                  onClick={handleProfileMenuOpen}
-                  color="inherit"
-                >
-                  <AccountCircle />
-                </IconButton>
-              </Box>
-              <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-                <IconButton
-                  size="large"
-                  aria-label="show more"
-                  aria-controls={mobileMenuId}
-                  aria-haspopup="true"
-                  onClick={handleMobileMenuOpen}
-                  color="inherit"
-                >
-                  <MoreIcon />
-                </IconButton>
-              </Box>
-            </Toolbar>
-          </AppBar>
-          {renderMobileMenu}
-          {renderMenu}
-        </Box>
-      );
+                <MoreIcon />
+              </IconButton>
+            </Box>
+          </Toolbar>
+        </AppBar>
+        {renderMobileMenu}
+        {renderMenu}
+      </Box>
+    </>
+  );
 }
 
 export default Navbar

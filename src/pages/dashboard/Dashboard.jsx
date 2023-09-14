@@ -17,37 +17,30 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import Checkbox from '@mui/material/Checkbox';
 import Tooltip from '@mui/material/Tooltip';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Switch from '@mui/material/Switch';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { visuallyHidden } from '@mui/utils';
-import axios from 'axios';
 import { getUserPosts } from '../../services/getPostByUserId';
 import EditIcon from '@mui/icons-material/Edit';
 import './dashboard.scss'
 import { getAllCommentsByPostId } from '../../services/getAllCommentsByPostId';
 import { deletePostById } from '../../services/deletePostById';
 import Swal from 'sweetalert2';
-import Modal from '../../components/modal/ModalEdit';
 import ModalEdit from '../../components/modal/ModalEdit';
-import PermanentDrawerLeft from '../navbar/NavbarLeft';
 import { FaHome } from 'react-icons/fa';
-import { BsFillPatchPlusFill } from 'react-icons/bs';
 import { CgProfile } from 'react-icons/cg';
-import { BiPhotoAlbum } from 'react-icons/bi';
 import NavbarLeft from '../navbar/NavbarLeft';
-
-
 
 
 function Dashboard() {
 
     const [userData, setUserData] = useState([]);
     const [commentsData, setCommentsData] = useState([]);
-
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const [showNavbarLeft, setShowNavbarLeft] = useState(true);
+    const [marginLeft, setMarginLeft] = useState('200px');
     const userId = 1;
     const postId = 1;
 
@@ -70,8 +63,26 @@ function Dashboard() {
                 console.error(err);
             });
 
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
 
     }, []);
+
+    useEffect(() => {
+        if (windowWidth <= 500) {
+            setShowNavbarLeft(false);
+            setMarginLeft('0px');
+        } else {
+            setShowNavbarLeft(true);
+            setMarginLeft('200px');
+        }
+    }, [windowWidth]);
 
 
     function descendingComparator(a, b, orderBy) {
@@ -213,17 +224,14 @@ function Dashboard() {
 
         const [open, setOpen] = React.useState(false);
         const [postToEdit, setPostToEdit] = useState('')
-        //const handleOpen = () => setOpen(true);
+
 
         const handleEdit = () => {
-            // Aquí puedes implementar la lógica para editar la fila seleccionada
             const selectedRowData = userData.find((row) => selected.includes(row.title));
             console.log('Editar:', selectedRowData);
             setPostToEdit(selectedRowData);
             setOpen(true);
         };
-
-
 
 
         return (
@@ -296,9 +304,6 @@ function Dashboard() {
     const [page, setPage] = React.useState(0);
     const [dense, setDense] = React.useState(false);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
-
-    const [expandedRow, setExpandedRow] = React.useState(null);
-
     const handleRequestSort = (event, property) => {
         const isAsc = orderBy === property && order === 'asc';
         setOrder(isAsc ? 'desc' : 'asc');
@@ -368,7 +373,6 @@ function Dashboard() {
         }
     };
 
-    // Avoid a layout jump when reaching the last page with empty rows.
     const emptyRows =
         page > 0 ? Math.max(0, (1 + page) * rowsPerPage - userData.length) : 0;
 
@@ -389,9 +393,9 @@ function Dashboard() {
     ];
 
     const listItems = [
-        { icon: <FaHome onClick={hadleGoToHome}/>, text: 'Inicio' },
-        { icon: <BsFillPatchPlusFill />, text: 'Publicar' },
-        { icon: <CgProfile />, text: 'Perfil' },
+        { icon: <FaHome onClick={hadleGoToHome} />, text: 'Inicio', root: '/home' },
+        // { icon: <BsFillPatchPlusFill />, text: 'Publicar' },
+        { icon: <CgProfile />, text: 'Perfil', root: '/perfil' },
         // { icon: <BiPhotoAlbum />, text: 'Mi Galería' },
     ];
 
@@ -399,8 +403,8 @@ function Dashboard() {
 
     return (
         <>
-            <NavbarLeft listItems={listItems} />
-            <div style={{ marginLeft: '200px', marginTop: '64px' }}>
+            {showNavbarLeft && <NavbarLeft listItems={listItems} />}
+            <div style={{ marginLeft, marginTop: '64px' }}>
                 <Box sx={{ width: '95%' }}>
                     <Paper sx={{ width: '100%', mb: 2 }}>
                         {userData.length > 0 ? (
