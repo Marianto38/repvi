@@ -16,20 +16,6 @@ REPVI es un proyecto de software web diseñado para proporcionar una experiencia
 - Guardar publicaciones como favoritas
 - Formularios sencillos
 
-
-## Tech Stack
-
-### Desarrollo Front-end
-- SASS: Un popular preprocesador de CSS que mejora las capacidades de estilizado de CSS al proporcionar variables, anidamiento y más.
-- Webpack y Babel: Webpack es un potente empaquetador de módulos, y Babel es un compilador de JavaScript. Juntos, permiten utilizar características modernas de JavaScript y empaquetar los activos del proyecto de manera eficiente.
-
-### Gestión del Estado:
-- Usestate: Hook de React para gestionar el estado de la aplicación.
-
-### Framework de Desarrollo Front-end:
-- React: Una popular biblioteca de JavaScript para construir interfaces de usuario, que ofrece un desarrollo basado en componentes y una eficiente renderización del DOM.
-
-
 ## Demo
 
 Insert gif or link to demo
